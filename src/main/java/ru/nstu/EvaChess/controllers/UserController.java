@@ -18,13 +18,13 @@ public class UserController {
     private final UserService userService;
 
     @PostMapping
-    public ResponseEntity<User> createSeller(@RequestBody UserCreateRequest userCreateRequest) {
+    public ResponseEntity<User> createUser(@RequestBody UserCreateRequest userCreateRequest) {
         User user = userService.create(userCreateRequest);
         return new ResponseEntity<>(user, HttpStatus.CREATED); //TODO: Доделать плохой статус
     }
 
     @GetMapping("/{id}")
-    public User getSeller(@PathVariable("id") long id){
+    public User getUser(@PathVariable("id") long id){
 
         return userService.get(id);  //TODO: Доделать плохой статус
         //TODO: Доделать проверку нахождение

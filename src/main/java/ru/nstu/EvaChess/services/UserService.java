@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.nstu.EvaChess.controllers.dto.UserCreateRequest;
 import ru.nstu.EvaChess.models.User;
+import ru.nstu.EvaChess.repositories.TokenRepository;
 import ru.nstu.EvaChess.repositories.UserRepository;
 
 @Service(value = "userService")
@@ -11,6 +12,7 @@ import ru.nstu.EvaChess.repositories.UserRepository;
 public class UserService {
 
     private final UserRepository userRepository;
+    private final TokenRepository tokenRepository;
 
     public User create(UserCreateRequest userInfo){
         User newUser = new User(userInfo.login(), userInfo.password());
@@ -34,5 +36,9 @@ public class UserService {
         {
             return new User();
         }
+    }
+
+    public User getByToken(String token){
+        return tokenRepository.getTokenByString(token).getUser();
     }
 }
