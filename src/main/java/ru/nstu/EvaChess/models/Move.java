@@ -11,6 +11,15 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Move {
+
+    public Move(TreeMove treeMove, String positionAfter, /*String nameMove,*/ Move preventMove){
+        //this.number = number;
+        this.treeId = treeMove;
+        this.positionAfter = positionAfter;
+        //this.nameMove = nameMove;
+        this.preventMove = preventMove;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;

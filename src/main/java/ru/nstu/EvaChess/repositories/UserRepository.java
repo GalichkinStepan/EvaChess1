@@ -15,4 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
             "WHERE users.login = ?1" +
             "LIMIT 1", nativeQuery = true)
     public User getUserByLogin(String login);
+
+
+
 }

@@ -11,6 +11,8 @@ import ru.nstu.EvaChess.models.User;
 import ru.nstu.EvaChess.repositories.TreeMoveRepository;
 import ru.nstu.EvaChess.services.TreeMoveService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/tree")
 @Slf4j
@@ -25,7 +27,7 @@ public class TreeMoveController {
     }
 
     @GetMapping
-    public User getAllTree(@RequestHeader("token") String token){
-        return null; //TODO: Доделать возращение всех веток
+    public List<TreeMove> getAllTrees(@RequestHeader("token") String token){
+        return treeMoveService.getAllTree(token);
     }
 }
