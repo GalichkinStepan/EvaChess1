@@ -1,6 +1,7 @@
 package ru.nstu.EvaChess.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.catalina.util.StringUtil;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -11,6 +12,9 @@ import ru.nstu.EvaChess.models.User;
 import ru.nstu.EvaChess.repositories.TokenRepository;
 import ru.nstu.EvaChess.repositories.UserRepository;
 
+import java.io.Console;
+
+@Slf4j
 @Service(value = "userService")
 @RequiredArgsConstructor
 public class UserService {
@@ -22,11 +26,16 @@ public class UserService {
         User newUser = new User(userInfo.login(), userInfo.password());
 
         try {
-            userRepository.getUserByLogin(userInfo.login());
-            userRepository.save(newUser);
-            return newUser;
+            User user = userRepository.getUserByLogin(userInfo.login());
+            if(user.getId() == 0)
+            {
+                userRepository.save(newUser); //TODO: Доделать уникальность пользователей
+                return newUser;
+            }
+           else return new User();
         }
         catch (Exception ex){
+            log.info(ex.toString());
             return new User();
         }
     }

@@ -9,6 +9,7 @@ import ru.nstu.EvaChess.controllers.dto.GetTokenRequest;
 import ru.nstu.EvaChess.controllers.dto.UserCreateRequest;
 import ru.nstu.EvaChess.models.Token;
 import ru.nstu.EvaChess.models.User;
+import ru.nstu.EvaChess.repositories.UserRepository;
 import ru.nstu.EvaChess.services.UserService;
 
 @RestController
@@ -18,6 +19,8 @@ import ru.nstu.EvaChess.services.UserService;
 public class UserController {
 
     private final UserService userService;
+    private final UserRepository userRepository;
+
 
     @PostMapping
     public ResponseEntity<User> createUser(@RequestBody UserCreateRequest userCreateRequest) {
@@ -25,12 +28,13 @@ public class UserController {
         return new ResponseEntity<>(user, HttpStatus.CREATED); //TODO: Доделать плохой статус
     }
 
-    @GetMapping("/{id}")
-    public User getUser(@PathVariable("id") long id){
-
-        return userService.get(id);  //TODO: Доделать плохой статус
-        //TODO: Доделать проверку нахождение
-    }
+//    @GetMapping("/{id}")
+//    public User getUser(@PathVariable("id") long id){
+//
+//        return userRepository.getUserByLogin("Eva");
+//        //return userService.get(id);  //TODO: Доделать плохой статус
+//        //TODO: Доделать проверку нахождение
+//    }
 
     @PostMapping("/token")
     public String getToken(@RequestBody GetTokenRequest getTokenRequest){

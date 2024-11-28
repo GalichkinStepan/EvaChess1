@@ -10,10 +10,7 @@ import java.time.LocalDateTime;
 @Repository(value = "userRepository")
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query(value = "SELECT *" +
-            "FROM users" +
-            "WHERE users.login = ?1" +
-            "LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM users WHERE users.login = ?1 LIMIT 1", nativeQuery = true)
     public User getUserByLogin(String login);
 
 
