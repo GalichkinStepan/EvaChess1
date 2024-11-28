@@ -10,8 +10,6 @@ import java.util.List;
 
 @Repository(value = "treeMoveRepository")
 public interface TreeMoveRepository extends JpaRepository<TreeMove, Long> {
-    @Query(value = "SELECT *" +
-            "FROM tree_moves" +
-            "WHERE tree_moves.user_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM tree_moves WHERE tree_moves.user_id = ?1", nativeQuery = true)
     public List<TreeMove> getAllTree(long userId);
 }

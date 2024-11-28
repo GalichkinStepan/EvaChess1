@@ -8,9 +8,6 @@ import ru.nstu.EvaChess.models.User;
 
 @Repository(value = "tokenRepository")
 public interface TokenRepository extends JpaRepository<Token, Long> {
-    @Query(value = "SELECT *" +
-            "FROM tokens" +
-            "WHERE tokens.token = ?1" +
-            "LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM tokens WHERE tokens.token = ?1 LIMIT 1", nativeQuery = true)
     public Token getTokenByString(String token);
 }

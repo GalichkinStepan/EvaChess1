@@ -17,7 +17,9 @@ import ru.nstu.EvaChess.models.Move;
 public class MoveController {
     @PostMapping
     public Move createMove(@RequestBody CreateMoveRequest createMoveRequest){
-        return null;
+        return null; //TODO: Тут сам поймешь)
     }
     //TODO: Получить нулевой ход ветки
+    //TODO: Получить все ходы из данного
+    //TODO: Получить случайный ход из данного
 }

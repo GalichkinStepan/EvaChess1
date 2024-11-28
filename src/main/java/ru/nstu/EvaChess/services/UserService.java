@@ -56,12 +56,12 @@ public class UserService {
     }
 
     public String createToken(GetTokenRequest getTokenRequest) {
-        User user = userRepository.getUserByLogin(getTokenRequest.login());
+        User user = userRepository.getUserByLogin(getTokenRequest.login()); //TODO: Проверить наличие пользователя
         if(user.getPassword().equals(getTokenRequest.password())){
             Token token = new Token(user, Token.generateToken());
             return tokenRepository.save(token).getTokenString();
         } else {
-            return "";
+            return "0";
         }
 
     }

@@ -47,7 +47,7 @@ public class Token {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "users")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @Column(name = "token")

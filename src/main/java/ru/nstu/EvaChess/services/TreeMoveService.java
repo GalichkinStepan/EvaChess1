@@ -16,7 +16,7 @@ import java.util.List;
 public class TreeMoveService {
 
     private final TreeMoveRepository treeMoveRepository;
-    private MoveService moveService;
+    private final MoveService moveService;
     private final UserService userService;
 
     public TreeMove createTree(String token, CreateTreeRequest createTreeRequest) {
