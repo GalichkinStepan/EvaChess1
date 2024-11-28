@@ -13,7 +13,8 @@ create table tokens(
 
 create table tree_moves(
 	id serial primary key,
-    user_id integer REFERENCES users(id)
+    user_id integer REFERENCES users(id),
+    name varchar(50)
 );
 
 create table moves(

@@ -16,8 +16,8 @@ import ru.nstu.EvaChess.models.Move;
 @RequiredArgsConstructor
 public class MoveController {
     @PostMapping
-    public Move getToken(@RequestBody CreateMoveRequest createMoveRequest){
-
+    public Move createMove(@RequestBody CreateMoveRequest createMoveRequest){
         return null;
     }
+    //TODO: Получить нулевой ход ветки
 }

@@ -20,6 +20,15 @@ public class Move {
         this.preventMove = preventMove;
     }
 
+    public Move(TreeMove treeMove, String positionAfter, /*String nameMove,*/ Move preventMove, long number){
+        //this.number = number;
+        this.treeId = treeMove;
+        this.positionAfter = positionAfter;
+        this.number = number;
+        //this.nameMove = nameMove;
+        this.preventMove = preventMove;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -37,6 +46,7 @@ public class Move {
     @Column(name = "name_move")
     private String nameMove;
 
-    @Column(name = "prevent_move")
+    @ManyToOne
+    @JoinColumn(name = "prevent_move")
     private Move preventMove;
 }

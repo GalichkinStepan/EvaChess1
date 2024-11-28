@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.nstu.EvaChess.controllers.dto.CreateMoveRequest;
 import ru.nstu.EvaChess.models.Move;
+import ru.nstu.EvaChess.models.TreeMove;
 import ru.nstu.EvaChess.repositories.MoveRepository;
 
 @Service(value = "moveService")
@@ -15,5 +16,9 @@ public class MoveService {
     public Move createMove(CreateMoveRequest createMoveRequest){
         Move move = new Move();
         return null;
+    }
+
+    public Move createNullMove(TreeMove tree){
+        return moveRepository.save(new Move(tree ,"baseFEN", null, 0));
     }
 }

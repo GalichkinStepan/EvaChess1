@@ -34,7 +34,6 @@ public class UserController {
 
     @PostMapping("/token")
     public String getToken(@RequestBody GetTokenRequest getTokenRequest){
-
         return userService.createToken(getTokenRequest);
     }
 

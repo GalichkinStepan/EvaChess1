@@ -12,8 +12,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class TreeMove {
 
-    public TreeMove(User user){
+    public TreeMove(User user, String name){
+
         this.user = user;
+        this.name = name;
     }
 
     @Id
@@ -21,6 +23,9 @@ public class TreeMove {
     private long id;
 
     @ManyToOne
-    @JoinColumn(name = "users")
+    @JoinColumn(name = "user_id")
     private User user;
+
+    @Column(name = "name")
+    private String name;
 }
