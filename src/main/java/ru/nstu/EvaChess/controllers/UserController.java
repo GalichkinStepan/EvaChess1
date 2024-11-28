@@ -19,7 +19,6 @@ import ru.nstu.EvaChess.services.UserService;
 public class UserController {
 
     private final UserService userService;
-    private final UserRepository userRepository;
 
 
     @PostMapping

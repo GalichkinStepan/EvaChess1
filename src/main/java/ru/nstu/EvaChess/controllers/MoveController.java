@@ -15,6 +15,7 @@ import ru.nstu.EvaChess.models.Move;
 @Slf4j
 @RequiredArgsConstructor
 public class MoveController {
+
     @PostMapping
     public Move createMove(@RequestBody CreateMoveRequest createMoveRequest){
         return null; //TODO: Тут сам поймешь)
