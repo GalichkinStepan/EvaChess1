@@ -25,6 +25,7 @@ public class MoveController {
     public Move getNullMove(@PathVariable("id") long treeId){
         return moveService.getNullMove(treeId);
     }
+
     //TODO: Получить все ходы из данного
     //TODO: Получить случайный ход из данного
 }
