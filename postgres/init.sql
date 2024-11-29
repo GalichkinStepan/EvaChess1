@@ -19,9 +19,10 @@ create table tree_moves(
 
 create table moves(
 	id serial primary key,
-	number_move integer,
+	number integer,
     tree_id integer REFERENCES tree_moves(id),
 	position_after varchar(100),
 	name_move varchar(10),
-    prevent_move integer REFERENCES moves(id)
+    prevent_move integer REFERENCES moves(id),
+    color boolean
 );

@@ -12,12 +12,14 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class Move {
 
-    public Move(TreeMove treeMove, String positionAfter, /*String nameMove,*/ Move preventMove){
-        //this.number = number;
+    public Move(TreeMove treeMove, String positionAfter, /*String nameMove,*/ Move preventMove, Boolean colorWhite){
+        if(colorWhite)
+            this.number = preventMove.getNumber() + 1;
         this.treeId = treeMove;
         this.positionAfter = positionAfter;
         //this.nameMove = nameMove;
-        this.preventMove = preventMove;
+        this.preventMove = preventMove; //TODO: Проверка на то, что прошлый ход черный/белый
+        this.colorWhite = colorWhite;
     }
 
     public Move(TreeMove treeMove, String positionAfter, /*String nameMove,*/ Move preventMove, long number){
@@ -45,6 +47,9 @@ public class Move {
 
     @Column(name = "name_move")
     private String nameMove;
+
+    @Column(name = "color_white")
+    private Boolean colorWhite;
 
     @ManyToOne
     @JoinColumn(name = "prevent_move")

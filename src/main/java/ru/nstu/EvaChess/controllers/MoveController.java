@@ -2,13 +2,11 @@ package ru.nstu.EvaChess.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.nstu.EvaChess.controllers.dto.CreateMoveRequest;
 import ru.nstu.EvaChess.controllers.dto.GetTokenRequest;
 import ru.nstu.EvaChess.models.Move;
+import ru.nstu.EvaChess.services.MoveService;
 
 @RestController
 @RequestMapping("/move")
@@ -16,11 +14,17 @@ import ru.nstu.EvaChess.models.Move;
 @RequiredArgsConstructor
 public class MoveController {
 
+    private final MoveService moveService;
+
     @PostMapping
     public Move createMove(@RequestBody CreateMoveRequest createMoveRequest){
-        return null; //TODO: Тут сам поймешь)
+        return moveService.createMove(createMoveRequest);
     }
-    //TODO: Получить нулевой ход ветки
+
+    @GetMapping("/tree/{id}")
+    public Move getNullMove(@PathVariable("id") long treeId){
+        return moveService.getNullMove(treeId);
+    }
     //TODO: Получить все ходы из данного
     //TODO: Получить случайный ход из данного
 }
