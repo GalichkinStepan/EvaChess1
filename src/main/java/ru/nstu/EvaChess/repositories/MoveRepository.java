@@ -10,7 +10,7 @@ import ru.nstu.EvaChess.models.User;
 @Repository(value = "moveRepository")
 public interface MoveRepository extends JpaRepository<Move, Long> {
 
-    @Query(value = "SELECT * FROM moves WHERE moves.tree_id = ?1 AND moves.number = 0 LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT * FROM moves WHERE ?1 = moves.tree_id AND moves.number = 0 LIMIT 1", nativeQuery = true)
     public Move getNullMove(long treeId);
 
 }

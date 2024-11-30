@@ -13,6 +13,7 @@ import ru.nstu.EvaChess.repositories.TokenRepository;
 import ru.nstu.EvaChess.repositories.UserRepository;
 
 import java.io.Console;
+import java.util.concurrent.ExecutionException;
 
 @Slf4j
 @Service(value = "userService")
@@ -27,7 +28,7 @@ public class UserService {
 
         try {
             User user = userRepository.getUserByLogin(userInfo.login());
-            if(user.getId() == 0)
+            if(user == null)
             {
                 userRepository.save(newUser); //TODO: Доделать уникальность пользователей
                 return newUser;
@@ -56,7 +57,15 @@ public class UserService {
     }
 
     public String createToken(GetTokenRequest getTokenRequest) {
-        User user = userRepository.getUserByLogin(getTokenRequest.login()); //TODO: Проверить наличие пользователя
+        User user;
+
+        try{
+            user = userRepository.getUserByLogin(getTokenRequest.login());
+        }
+        catch (Exception exception){
+            return "0";
+        }
+
         if(user.getPassword().equals(getTokenRequest.password())){
             Token token = new Token(user, Token.generateToken());
             return tokenRepository.save(token).getTokenString();

@@ -22,21 +22,37 @@ public class UserController {
 
 
     @PostMapping
+    @CrossOrigin(origins = "http://localhost:9000")
     public ResponseEntity<User> createUser(@RequestBody UserCreateRequest userCreateRequest) {
         User user = userService.create(userCreateRequest);
         return new ResponseEntity<>(user, HttpStatus.CREATED); //TODO: Доделать плохой статус
     }
 
-//    @GetMapping("/{id}")
-//    public User getUser(@PathVariable("id") long id){
-//
-//        return userRepository.getUserByLogin("Eva");
-//        //return userService.get(id);  //TODO: Доделать плохой статус
-//        //TODO: Доделать проверку нахождение
-//    }
+    @PostMapping("/javaconfig")
+    public ResponseEntity<User> createUserConfig(@RequestBody UserCreateRequest userCreateRequest) {
+        User user = userService.create(userCreateRequest);
+        return new ResponseEntity<>(user, HttpStatus.CREATED); //TODO: Доделать плохой статус
+    }
+
+    @GetMapping("/{id}")
+    @CrossOrigin(origins = "http://localhost:9000")
+    public User getUser(@PathVariable("id") long id){
+        return userService.getByToken("yedLISdDfIoPXfStESVv");
+    }
+
+    @GetMapping("/javaconfig")
+    public User getUserConfig(){ // @PathVariable("id") long id
+        return userService.getByToken("yedLISdDfIoPXfStESVv");
+    }
 
     @PostMapping("/token")
+    @CrossOrigin(origins = "http://localhost:9000")
     public String getToken(@RequestBody GetTokenRequest getTokenRequest){
+        return userService.createToken(getTokenRequest);
+    }
+
+    @PostMapping("/javaconfig/token")
+    public String getTokenConfig(@RequestBody GetTokenRequest getTokenRequest){
         return userService.createToken(getTokenRequest);
     }
 
