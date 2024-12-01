@@ -13,14 +13,16 @@ public class EvaChessApplication {
 		SpringApplication.run(EvaChessApplication.class, args);
 	} // Hello World
 
-	@Bean
-	public WebMvcConfigurer corsConfigurer() {
-		return new WebMvcConfigurer() {
-			@Override
-			public void addCorsMappings(CorsRegistry registry) {
-				registry.addMapping("/user/javaconfig").allowedOrigins("http://localhost:9000");
-			}
-		};
-	}
+//	@Bean
+//	public WebMvcConfigurer corsConfigurer() {
+//		return new WebMvcConfigurer() {
+//			@Override
+//			public void addCorsMappings(CorsRegistry registry) {
+//				registry.addMapping("/**")
+//						.allowedOrigins("http://localhost:3000")
+//						.allowedMethods("*");
+//			}
+//		};
+//	}
 
 }
