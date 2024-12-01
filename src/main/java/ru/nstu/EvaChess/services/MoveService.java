@@ -1,6 +1,7 @@
 package ru.nstu.EvaChess.services;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import ru.nstu.EvaChess.controllers.dto.CreateMoveRequest;
 import ru.nstu.EvaChess.controllers.dto.MoveResponse;
@@ -13,6 +14,7 @@ import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.List;
 
+@Slf4j
 @Service(value = "moveService")
 @RequiredArgsConstructor
 public class MoveService {
@@ -21,7 +23,29 @@ public class MoveService {
     private final TreeMoveRepository treeMoveRepository;
 
     public MoveResponse getMoveResponse(Move move){
-        return new MoveResponse(move.getId(), move.getNumber(), move.getTreeId().getId(), move.getPositionAfter(), move.getNameMove(), move.getColorWhite(), move.getPreventMove().getId());
+        try{
+            return new MoveResponse(
+                    move.getId(),
+                    move.getNumber(),
+                    move.getTreeId().getId(),
+                    move.getPositionAfter(),
+                    move.getNameMove(),
+                    move.getColorWhite(),
+                    move.getPreventMove().getId()
+            );
+        }
+        catch (Exception exception){
+            log.info(exception.toString());
+            return new MoveResponse(
+                    move.getId(),
+                    move.getNumber(),
+                    move.getTreeId().getId(),
+                    move.getPositionAfter(),
+                    null, //move.getNameMove(),
+                    move.getColorWhite(),
+                    null
+            );
+        }
     }
 
     public MoveResponse createMove(CreateMoveRequest createMoveRequest){

@@ -5,5 +5,5 @@ import lombok.extern.jackson.Jacksonized;
 
 @Builder
 @Jacksonized
-public record MoveResponse(long id, long number, long treeId, String positionAfter, String nameMove, Boolean colorWhite, long preventMove) {
+public record MoveResponse(long id, Long number, Long treeId, String positionAfter, String nameMove, Boolean colorWhite, Long preventMove) {
 }
