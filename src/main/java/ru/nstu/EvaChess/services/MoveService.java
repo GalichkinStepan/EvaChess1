@@ -80,8 +80,11 @@ public class MoveService {
     public MoveResponse getRandomNextMove(long moveId){
         SecureRandom random = new SecureRandom();
         List<MoveResponse> allMoves = getAllNextMoves(moveId);
-        int rnd = random.nextInt(allMoves.size());
-        return allMoves.get(rnd);
+        if (allMoves.size() < 1) {
+            int rnd = random.nextInt(allMoves.size());
+            return allMoves.get(rnd);
+        }
+        return new MoveResponse(0, null, null, null, null, null, null);
     }
 
 }

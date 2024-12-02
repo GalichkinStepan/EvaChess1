@@ -1,6 +1,7 @@
 package ru.nstu.EvaChess.controllers.dto;
 
 import lombok.Builder;
+import lombok.NoArgsConstructor;
 import lombok.extern.jackson.Jacksonized;
 
 @Builder
