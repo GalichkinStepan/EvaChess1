@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.nstu.EvaChess.GlobalApplicationConstant;
 import ru.nstu.EvaChess.controllers.dto.GetTokenRequest;
 import ru.nstu.EvaChess.controllers.dto.UserCreateRequest;
 import ru.nstu.EvaChess.models.Token;
@@ -22,7 +23,7 @@ public class UserController {
 
 
     @PostMapping
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = GlobalApplicationConstant.FRONT_URL)
     public ResponseEntity<User> createUser(@RequestBody UserCreateRequest userCreateRequest) {
         User user = userService.create(userCreateRequest);
         return new ResponseEntity<>(user, HttpStatus.CREATED); //TODO: Доделать плохой статус
@@ -35,9 +36,16 @@ public class UserController {
 //    }
 
 
+    @DeleteMapping("/token")
+    @CrossOrigin(origins = GlobalApplicationConstant.FRONT_URL)
+    public ResponseEntity getToken(@RequestHeader("token") String token){
+        userService.deleteToken(token);
+        return new ResponseEntity(HttpStatus.ACCEPTED);
+    }
+
     @PostMapping("/token")
-    @CrossOrigin(origins = "http://localhost:3000")
-    public String getToken(@RequestBody GetTokenRequest getTokenRequest){
+    @CrossOrigin(origins = GlobalApplicationConstant.FRONT_URL)
+    public String deleteToken(@RequestBody GetTokenRequest getTokenRequest){
         return userService.createToken(getTokenRequest);
     }
 

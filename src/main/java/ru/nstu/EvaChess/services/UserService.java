@@ -57,21 +57,23 @@ public class UserService {
     }
 
     public String createToken(GetTokenRequest getTokenRequest) {
-        User user;
 
-        try{
-            user = userRepository.getUserByLogin(getTokenRequest.login());
-        }
-        catch (Exception exception){
-            return "0";
-        }
+        User user = userRepository.getUserByLogin(getTokenRequest.login());
 
-        if(user.getPassword().equals(getTokenRequest.password())){
-            Token token = new Token(user, Token.generateToken());
-            return tokenRepository.save(token).getTokenString();
+        if(user != null){
+            if(user.getPassword().equals(getTokenRequest.password())){
+                Token token = new Token(user, Token.generateToken());
+                return tokenRepository.save(token).getTokenString();
+            } else {
+                return "0";
+            }
         } else {
             return "0";
         }
 
+    }
+
+    public void deleteToken(String token){
+        tokenRepository.delete(tokenRepository.getTokenByString(token));
     }
 }

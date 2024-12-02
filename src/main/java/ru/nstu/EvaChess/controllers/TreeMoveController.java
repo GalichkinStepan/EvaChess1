@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import ru.nstu.EvaChess.GlobalApplicationConstant;
 import ru.nstu.EvaChess.controllers.dto.CreateTreeRequest;
 import ru.nstu.EvaChess.controllers.dto.TreeInfo;
 import ru.nstu.EvaChess.controllers.dto.UserCreateRequest;
@@ -24,13 +25,13 @@ public class TreeMoveController {
     private final TreeMoveService treeMoveService;
 
     @PostMapping
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = GlobalApplicationConstant.FRONT_URL)
     public ResponseEntity<TreeMove> createTree(@RequestHeader("token") String token, @RequestBody CreateTreeRequest createTreeRequest) {
         return new ResponseEntity<>(treeMoveService.createTree(token, createTreeRequest), HttpStatus.CREATED);
     }
 
     @GetMapping
-    @CrossOrigin(origins = "http://localhost:3000")
+    @CrossOrigin(origins = GlobalApplicationConstant.FRONT_URL)
     public List<TreeInfo> getAllTrees(@RequestHeader("token") String token){
         return treeMoveService.getAllTree(token);
     }
